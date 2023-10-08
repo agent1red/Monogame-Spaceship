@@ -16,7 +16,7 @@ namespace Monogame_Spaceship
         SpriteFont _timerFont;
 
         Ship player = new Ship();
-        Asteroid asteroidOne = new Asteroid(110);
+        Controller gameController = new();
 
 
         public Game1()
@@ -55,7 +55,12 @@ namespace Monogame_Spaceship
 
             player.ShipUpdate(gameTime);
 
-            asteroidOne.AsteroidUpdate(gameTime);
+            gameController.ControllerUpdate(gameTime);
+
+            for (int i = 0; i < gameController.asteroids.Count; i++)
+            {
+                gameController.asteroids[i].AsteroidUpdate(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -67,7 +72,12 @@ namespace Monogame_Spaceship
             _spriteBatch.Begin();
             _spriteBatch.Draw(_spaceSprite, new Vector2(0, 0), Color.White);
             _spriteBatch.Draw(_shipSprite, new Vector2(player.position.X - 34, player.position.Y - 50), Color.White);
-            _spriteBatch.Draw(_asteroidSprite, new Vector2(asteroidOne.position.X - asteroidOne.radius, asteroidOne.position.Y - asteroidOne.radius), Color.White);
+
+            for (int i = 0; i < gameController.asteroids.Count; i++)
+            {
+                _spriteBatch.Draw(_asteroidSprite, new Vector2(gameController.asteroids[i].position.X - gameController.asteroids[i].radius, gameController.asteroids[i].position.Y - gameController.asteroids[i].radius), Color.White);
+            }
+
             _spriteBatch.End();
 
 
