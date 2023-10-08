@@ -9,6 +9,15 @@ namespace Monogame_Spaceship
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        Texture2D _shipSprite;
+        Texture2D _asteroidSprite;
+        Texture2D _spaceSprite;
+        SpriteFont _gameFont;
+        SpriteFont _timerFont;
+
+        Ship player = new Ship();
+
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -18,7 +27,9 @@ namespace Monogame_Spaceship
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 600;
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -26,6 +37,12 @@ namespace Monogame_Spaceship
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            _shipSprite = Content.Load<Texture2D>("ship");
+            _spaceSprite = Content.Load<Texture2D>("space");
+            _asteroidSprite = Content.Load<Texture2D>("asteroid");
+            _gameFont = Content.Load<SpriteFont>("spaceFont");
+            _timerFont = Content.Load<SpriteFont>("timerFont");
 
             // TODO: use this.Content to load your game content here
         }
@@ -43,6 +60,12 @@ namespace Monogame_Spaceship
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(_spaceSprite, new Vector2(0, 0), Color.White);
+            _spriteBatch.Draw(_shipSprite, new Vector2(player.position.X - 34, player.position.Y - 50), Color.White);
+            _spriteBatch.End();
+
 
             // TODO: Add your drawing code here
 
