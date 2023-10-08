@@ -52,7 +52,7 @@ namespace Monogame_Spaceship
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            player.ShipUpdate();
+            player.ShipUpdate(gameTime);
 
             base.Update(gameTime);
         }
