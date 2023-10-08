@@ -17,7 +17,7 @@ namespace Monogame_Spaceship
 
             KeyboardState kState = Keyboard.GetState();
 
-            // Grab realtime seconds elapsed and multiply it by player speed
+            // Grab real time seconds elapsed and multiply it by player speed
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (kState.IsKeyDown(Keys.Right))
