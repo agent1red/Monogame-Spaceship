@@ -53,7 +53,11 @@ namespace Monogame_Spaceship
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            player.ShipUpdate(gameTime);
+            if (gameController.inGame)
+            {
+                player.ShipUpdate(gameTime);
+            }
+         
 
             gameController.ControllerUpdate(gameTime);
 
@@ -76,6 +80,19 @@ namespace Monogame_Spaceship
             for (int i = 0; i < gameController.asteroids.Count; i++)
             {
                 _spriteBatch.Draw(_asteroidSprite, new Vector2(gameController.asteroids[i].position.X - gameController.asteroids[i].radius, gameController.asteroids[i].position.Y - gameController.asteroids[i].radius), Color.White);
+            }
+
+            if (!gameController.inGame)
+            {
+                string menuMessage = "Press ENTER to begin!";
+
+                // Getting the measurement value of the string text
+                Vector2 sizeOfText =  _gameFont.MeasureString(menuMessage);
+
+                int halfWidthOfScreen = _graphics.PreferredBackBufferWidth / 2;
+
+                _spriteBatch.DrawString(_gameFont, menuMessage, new Vector2(halfWidthOfScreen - sizeOfText.X/2, 200), Color.White);
+
             }
 
             _spriteBatch.End();
