@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Monogame_Spaceship
 {
@@ -104,6 +105,8 @@ namespace Monogame_Spaceship
                 _spriteBatch.DrawString(_gameFont, menuMessage, new Vector2(halfWidthOfScreen - sizeOfText.X/2, 200), Color.White);
 
             }
+
+            _spriteBatch.DrawString(_timerFont, $"Time: {Math.Floor(gameController.totalTime)}", new Vector2(3,3), Color.White);
 
             _spriteBatch.End();
 

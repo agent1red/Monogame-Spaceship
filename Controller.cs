@@ -12,6 +12,7 @@ namespace Monogame_Spaceship
         public double maxTime = 2;
         public int nextSpeed = 240; 
         public bool inGame = false;
+        public double totalTime = 0;
 
         public void ControllerUpdate(GameTime gameTime)
         {
@@ -19,6 +20,7 @@ namespace Monogame_Spaceship
             if (inGame)
             {
                 timer -= gameTime.ElapsedGameTime.TotalSeconds;
+                totalTime += gameTime.ElapsedGameTime.TotalSeconds;
             }
             else
             {
@@ -27,7 +29,12 @@ namespace Monogame_Spaceship
                 if (kState.IsKeyDown(Keys.Enter))
                 {
                     inGame = true;
-                }
+                    totalTime = 0;
+
+                    timer = 2;
+                    maxTime = 2;
+                    nextSpeed = 240;
+    }
             }
          
 
