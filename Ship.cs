@@ -9,6 +9,9 @@ namespace Monogame_Spaceship
         static public Vector2 defaultPosition = new Vector2(640, 360);
         public Vector2 position = defaultPosition;
 
+        public int radius = 30;
+
+
         // in pixels per second across the map. 
         public int spaceshipSpeed = 180;
 

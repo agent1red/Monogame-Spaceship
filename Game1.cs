@@ -64,6 +64,16 @@ namespace Monogame_Spaceship
             for (int i = 0; i < gameController.asteroids.Count; i++)
             {
                 gameController.asteroids[i].AsteroidUpdate(gameTime);
+
+                int sum = gameController.asteroids[i].radius + player.radius;
+
+                if (Vector2.Distance(gameController.asteroids[i].position, player.position) < sum)
+                {
+                    gameController.inGame = false;
+                    player.position = Ship.defaultPosition;
+                    gameController.asteroids.Clear();
+                }
+
             }
 
             base.Update(gameTime);
